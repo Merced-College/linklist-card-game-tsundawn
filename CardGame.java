@@ -1,23 +1,12 @@
-//package linkedLists;
-
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-//import java.util.ArrayList;
-//import java.util.List;
-import java.util.Scanner;
-
-
 
 public class CardGame {
-	
-	private static LinkList cardList = new LinkList();  // make list
+    private static LinkList cardList = new LinkList(); // make list
 
-	public static void main(String[] args) {
-
-		// File name to read from
+    public static void main(String[] args) {
+        // File name to read from
         String fileName = "cards.txt"; // Ensure the file is in the working directory or specify the full path
 
         // Read the file and create Card objects
@@ -49,19 +38,29 @@ public class CardGame {
         // Print the loaded cards
         System.out.println("Cards loaded:");
         cardList.displayList();
-		
-		Card[] playerHand = new Card[5];
-		for(int i = 0; i < playerHand.length; i++)
-			playerHand[i] = cardList.getFirst();
-		
-		System.out.println("players hand");
-		for(int i = 0; i < playerHand.length; i++)
-			System.out.println(playerHand[i]);
-		
-		System.out.println();
-		System.out.println("the deck");
-		cardList.displayList();
 
-	}//end main
+        // Shuffle the deck
+        System.out.println("\nShuffling the deck...");
+        cardList.shuffle();
 
-}//end class
+        // Print the shuffled deck
+        System.out.println("Shuffled deck:");
+        cardList.displayList();
+
+        // Deal cards to the player
+        Card[] playerHand = new Card[5];
+        for (int i = 0; i < playerHand.length; i++) {
+            playerHand[i] = cardList.getFirst();
+        }
+
+        // Display the player's hand
+        System.out.println("\nPlayer's hand:");
+        for (Card card : playerHand) {
+            System.out.println(card);
+        }
+
+        // Display the remaining cards in the deck
+        System.out.println("\nRemaining cards in the deck:");
+        cardList.displayList();
+    }
+}
